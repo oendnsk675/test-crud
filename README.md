@@ -48,11 +48,8 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-```
-# Swagger running on:
-http://127.0.0.1:3000/api/docs
-```
-
+## Swagger running on
+[http://127.0.0.1:3000/api/docs](http://127.0.0.1:3000/api/docs)
 
 ## Test
 
