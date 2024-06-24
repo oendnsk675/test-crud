@@ -32,6 +32,8 @@
 $ npm install
 ```
 
+create database example: test_crud
+
 ## Running the app
 
 ```bash
