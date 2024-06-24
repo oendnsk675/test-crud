@@ -31,8 +31,9 @@
 ```bash
 $ npm install
 ```
-
+```bash
 create database example: test_crud
+```
 
 ## Running the app
 
@@ -46,6 +47,9 @@ $ npm run start:dev
 # production mode
 $ npm run start:prod
 ```
+
+## Swagger running on
+[http://127.0.0.1:3000/api/docs](http://127.0.0.1:3000/api/docs)
 
 ## Test
 
