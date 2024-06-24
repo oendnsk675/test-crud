@@ -28,6 +28,14 @@ export class UserService {
     };
   }
 
+  async findByUsername(username: string) {
+    return await this.userRepository.findOne({ where: { username } });
+  }
+
+  async findByEmail(email: string) {
+    return await this.userRepository.findOne({ where: { email } });
+  }
+
   async update(user_id: number, updateUserDto: UpdateUserDto) {
     await this.userRepository.update({ user_id }, updateUserDto);
     return {
