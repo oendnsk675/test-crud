@@ -7,6 +7,7 @@ import {
   Param,
   UseGuards,
   Delete,
+  Request,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -25,6 +26,12 @@ export class UserController {
   @Post()
   async create(@Body() createAuthDto: CreateUserDto) {
     return await this.userService.create(createAuthDto);
+  }
+
+  @ApiOperation({ summary: 'Get Profile User' })
+  @Get('profile')
+  async findProfile(@Request() req) {
+    return await this.userService.findOne(+req.user.user_id);
   }
 
   @ApiOperation({ summary: 'Get Detail User' })

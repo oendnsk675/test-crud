@@ -3,7 +3,11 @@ import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ChatModule } from './chat/chat.module';
+import { PostModule } from './post/post.module';
 import typeorm from './config/typeorm';
+import { MulterModule } from '@nestjs/platform-express';
+import { FriendsModule } from './friends/friends.module';
 
 @Module({
   imports: [
@@ -19,6 +23,9 @@ import typeorm from './config/typeorm';
     }),
     AuthModule,
     UserModule,
+    ChatModule,
+    PostModule,
+    FriendsModule,
   ],
 })
 export class AppModule {}
