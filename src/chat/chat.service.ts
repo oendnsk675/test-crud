@@ -22,9 +22,6 @@ export class ChatService {
       relations: ['user', 'reply_to'],
       skip: (page - 1) * limit,
       take: limit,
-      order: {
-        chat_id: 'ASC',
-      },
     });
 
     return {
