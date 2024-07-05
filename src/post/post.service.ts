@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { Repository } from 'typeorm';
@@ -11,12 +11,20 @@ export class PostService {
     @InjectRepository(Post) private postRepository: Repository<Post>,
   ) {}
 
-  async create(createPostDto: CreatePostDto) {
-    const post = this.postRepository.create(createPostDto);
-    await this.postRepository.save(post);
-    return {
-      message: 'Successfully create post',
-    };
+  async create({ filename }: any, { content }: any) {
+    try {
+      const payload = {
+        content,
+        image: filename,
+      };
+      const post = this.postRepository.create(payload);
+      await this.postRepository.save(post);
+      return {
+        message: 'Successfully create post',
+      };
+    } catch (error) {
+      throw new BadRequestException();
+    }
   }
 
   async findAll() {

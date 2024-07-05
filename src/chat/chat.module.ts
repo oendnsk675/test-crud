@@ -8,6 +8,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from 'src/user/entities/user.entity';
 import { Chat } from './entities/chat.entity';
 import { ChatController } from './chat.controller';
+import { Friend } from 'src/friends/entities/friend.entity';
+import { FriendRepository } from 'src/friends/user.repository';
 
 @Module({
   providers: [
@@ -16,13 +18,14 @@ import { ChatController } from './chat.controller';
     JwtService,
     UserService,
     UserRepository,
+    FriendRepository,
   ],
   imports: [
     JwtModule.register({
       secret: 'test-crud',
       signOptions: { expiresIn: '1d' },
     }),
-    TypeOrmModule.forFeature([User, Chat]),
+    TypeOrmModule.forFeature([User, Chat, Friend]),
   ],
   controllers: [ChatController],
 })

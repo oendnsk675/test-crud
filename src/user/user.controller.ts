@@ -62,7 +62,7 @@ export class UsersController {
 
   @ApiOperation({ summary: 'Get All User' })
   @Get()
-  findAll() {
-    return this.userService.findAll();
+  findAll(@Request() req) {
+    return this.userService.findAll(req.user.user_id);
   }
 }

@@ -13,9 +13,6 @@ export class Post {
   @PrimaryGeneratedColumn()
   post_id: number;
 
-  @Column()
-  title: string;
-
   @Column({ type: 'text' })
   content: string;
 

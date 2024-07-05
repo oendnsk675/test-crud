@@ -1,26 +1,19 @@
-import {
-  Controller,
-  Get,
-  Param,
-  ParseIntPipe,
-  Query,
-  Request,
-  UseGuards,
-} from '@nestjs/common';
+import { Controller, Get, Param, Request, UseGuards } from '@nestjs/common';
 import { ChatService } from './chat.service';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
+@UseGuards(JwtAuthGuard)
 @Controller('chat')
 export class ChatController {
   constructor(private readonly chatService: ChatService) {}
 
-  @UseGuards(JwtAuthGuard)
   @Get()
-  async findAll(
-    @Request() req,
-    @Query('page') page: number = 1,
-    @Query('limit') limit: number = 10,
-  ) {
-    return this.chatService.findAll(req.user.user_id, page, limit);
+  async findAllMessage(@Request() req) {
+    return this.chatService.findAllMessage(req.user.user_id);
+  }
+
+  @Get(':friend_id')
+  async findMessage(@Param('friend_id') friend_id: number, @Request() req) {
+    return this.chatService.findMessage(req.user.user_id, friend_id);
   }
 }
